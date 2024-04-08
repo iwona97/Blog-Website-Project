@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField
-from wtforms.validators import DataRequired, URL, Email, Length, Regexp
+from wtforms.validators import DataRequired, URL, Length, Regexp
 from flask_ckeditor import CKEditorField
 
 
@@ -15,8 +15,7 @@ class CreatePostForm(FlaskForm):
 
 # Create a form to register new users
 class RegisterForm(FlaskForm):
-    # Requires email_validator package to be installed. For ex: pip install wtforms[email]
-    email = StringField(label="Email", validators=[DataRequired(), Email(message='Invalid email address. A valid email address should contains "." and "@".')])
+    email = StringField(label="Email", validators=[DataRequired()])
     password = PasswordField(label="Password",
                              validators=[DataRequired(),
                                          Length(min=8, message="Field must be at least 8 characters long."),
@@ -27,7 +26,7 @@ class RegisterForm(FlaskForm):
 
 # Create a form to login existing users
 class LoginForm(FlaskForm):
-    email = StringField(label="Email", validators=[DataRequired(), Email(message='Invalid email address. A valid email address should contains "." and "@".')])
+    email = StringField(label="Email", validators=[DataRequired()])
     password = PasswordField(label="Password", validators=[DataRequired()])
     submit = SubmitField(label="Let Me In!")
 
